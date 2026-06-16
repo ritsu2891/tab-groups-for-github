@@ -1,0 +1,8 @@
+{
+  "appName": {
+    "message": "Tab Groups for GitHub"
+  },
+  "appDesc": {
+    "message": "GitHubのリポジトリを任意のグループに整理し、グループごとのタブで一覧表示します（非公式）。"
+  }
+}

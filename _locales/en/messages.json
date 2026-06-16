@@ -1,0 +1,8 @@
+{
+  "appName": {
+    "message": "Tab Groups for GitHub"
+  },
+  "appDesc": {
+    "message": "Organize GitHub repositories into custom groups and browse them as tabs on the Repositories page. Unofficial."
+  }
+}

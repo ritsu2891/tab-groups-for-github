@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="128" height="128">
+  <!-- GitHub Tab Group icon: a tag split into 3 color bands (= multiple groups). Background-free. -->
+  <defs>
+    <clipPath id="ghtg-tag">
+      <path d="M7,6 H19 L29,16 L19,26 H7 A4,4 0 0 1 3,22 V10 A4,4 0 0 1 7,6 Z"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#ghtg-tag)">
+    <rect x="0" y="5"  width="32" height="7.5" fill="#1f6feb"/>
+    <rect x="0" y="12" width="32" height="7.5" fill="#1f883d"/>
+    <rect x="0" y="19" width="32" height="8"   fill="#8250df"/>
+  </g>
+  <!-- eyelet (sits on the colored body, so it stays visible on any background) -->
+  <circle cx="9.5" cy="16" r="2" fill="none" stroke="#ffffff" stroke-width="1.6"/>
+</svg>

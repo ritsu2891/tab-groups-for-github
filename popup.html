@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="popup.css" />
+    <title>Tab Groups for GitHub</title>
+  </head>
+  <body>
+    <header class="hd">
+      <h1 class="hd-title">Tab Groups for GitHub</h1>
+      <p class="hd-sub" data-i18n="popup_subtitle">リポジトリをグループに整理</p>
+    </header>
+
+    <section id="current-repo" class="card" hidden>
+      <div class="card-title" data-i18n="popup_current_title">このリポジトリを追加</div>
+      <div id="current-repo-name" class="repo-name"></div>
+      <div id="current-repo-groups" class="repo-groups"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-title">
+        <span data-i18n="popup_groups_title">グループ</span>
+        <span id="group-owner" class="owner-tag"></span>
+      </div>
+      <ul id="group-list" class="group-list"></ul>
+      <div class="new-group">
+        <input id="new-group-name" type="text" data-i18n-ph="new_group_placeholder" placeholder="新しいグループ名…" />
+        <button id="new-group-add" type="button" data-i18n="popup_add">追加</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-title" data-i18n="sync_title">クラウド同期</div>
+      <label class="sync-row">
+        <input id="sync-toggle" type="checkbox" />
+        <span data-i18n="sync_toggle_label">クラウド同期を有効にする（Chromeアカウント）</span>
+      </label>
+      <div class="usage">
+        <div class="usage-bar"><div id="usage-fill" class="usage-fill"></div></div>
+        <div id="usage-text" class="usage-text"></div>
+      </div>
+      <p id="sync-hint" class="hint"></p>
+    </section>
+
+    <section class="card">
+      <div class="card-title" data-i18n="popup_data_title">データ</div>
+      <div class="row">
+        <button id="export-btn" type="button" data-i18n="popup_export">エクスポート</button>
+        <button id="import-btn" type="button" data-i18n="popup_import">インポート</button>
+        <input id="import-file" type="file" accept="application/json,.json" hidden />
+      </div>
+      <p class="hint" data-i18n="popup_data_hint">設定（グループとメンバー）をJSONで保存・復元します。</p>
+    </section>
+
+    <section class="card">
+      <div class="card-title" data-i18n="popup_lang_title">言語 / Language</div>
+      <select id="lang-select" class="lang-select">
+        <option value="auto" data-i18n="lang_auto">自動</option>
+        <option value="ja">日本語</option>
+        <option value="en">English</option>
+      </select>
+    </section>
+
+    <footer class="ft">
+      <p data-i18n="popup_footer">
+        GitHubのプロフィール/Organizationの「Repositories」タブでグループタブが表示されます。
+      </p>
+      <p class="ft-disclaimer" data-i18n="disclaimer">
+        本拡張は GitHub, Inc. とは無関係の非公式ツールです。「GitHub」は GitHub, Inc. の商標です。
+      </p>
+    </footer>
+
+    <script src="src/i18n.js"></script>
+    <script src="src/storage.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

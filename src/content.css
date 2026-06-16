@@ -1,0 +1,691 @@
+/* GitHub Tab Group - injected UI styles
+ * GitHub Primer の CSS 変数を使い、ライト/ダーク双方に追従する。
+ * (新旧の変数名どちらにも備えてフォールバックを連鎖)
+ */
+
+.ghtg-tabbar,
+.ghtg-group-list {
+  --ghtg-fg: var(--fgColor-default, var(--color-fg-default, #1f2328));
+  --ghtg-muted: var(--fgColor-muted, var(--color-fg-muted, #636c76));
+  --ghtg-canvas: var(--bgColor-default, var(--color-canvas-default, #ffffff));
+  --ghtg-subtle: var(--bgColor-muted, var(--color-canvas-subtle, #f6f8fa));
+  --ghtg-border: var(--borderColor-default, var(--color-border-default, #d1d9e0));
+  --ghtg-accent: var(--fgColor-accent, var(--color-accent-fg, #0969da));
+  --ghtg-accent-emph: var(--bgColor-accent-emphasis, var(--color-accent-emphasis, #0969da));
+}
+
+/* ---- タブバー ---- */
+.ghtg-tabbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin: 4px 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--ghtg-border);
+}
+
+.ghtg-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: inherit;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--ghtg-fg);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 4px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ghtg-tab:hover {
+  background: var(--ghtg-subtle);
+}
+
+.ghtg-tab--active {
+  background: var(--ghtg-subtle);
+  border-color: var(--ghtg-border);
+  font-weight: 600;
+}
+
+.ghtg-tab-count {
+  font-size: 11px;
+  color: var(--ghtg-muted);
+  background: var(--ghtg-canvas);
+  border: 1px solid var(--ghtg-border);
+  border-radius: 20px;
+  padding: 0 6px;
+  min-width: 18px;
+  text-align: center;
+}
+
+.ghtg-tab-add {
+  color: var(--ghtg-accent);
+}
+
+.ghtg-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+/* ---- ネイティブ行のツール ---- */
+.ghtg-row-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 6px 0 2px;
+}
+
+.ghtg-assign-btn {
+  font: inherit;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--ghtg-muted);
+  background: var(--ghtg-canvas);
+  border: 1px solid var(--ghtg-border);
+  border-radius: 6px;
+  padding: 1px 8px;
+  cursor: pointer;
+}
+
+.ghtg-assign-btn:hover {
+  background: var(--ghtg-subtle);
+  color: var(--ghtg-fg);
+}
+
+.ghtg-assign-btn--active {
+  color: var(--ghtg-accent);
+  border-color: var(--ghtg-accent);
+}
+
+/* ---- Star 隣の「グループ」ボタン（GitHub .btn を流用しつつ微調整） ---- */
+.ghtg-star-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 8px;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.ghtg-star-btn .ghtg-octicon {
+  vertical-align: text-bottom;
+}
+
+.ghtg-star-btn-count {
+  display: inline-block;
+  min-width: 16px;
+  padding: 0 5px;
+  margin-left: 2px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: center;
+  border-radius: 20px;
+  background: var(--ghtg-subtle);
+  color: var(--ghtg-muted);
+}
+
+/* 割り当て済み: Star の starred 状態に倣ってアクセント色に */
+.ghtg-star-btn--active {
+  color: var(--ghtg-accent);
+}
+.ghtg-star-btn--active .ghtg-star-btn-count {
+  background: var(--ghtg-accent);
+  color: #fff;
+}
+
+/* ---- Organization（React一覧）用 ---- */
+/* 言語/統計行の歯車の次に続けるアイコンのみボタン（歯車と同じ見た目） */
+.ghtg-org-sep {
+  margin: 0 6px;
+  color: var(--fgColor-muted, var(--color-fg-muted, #636c76));
+  font-size: 12px;
+}
+.ghtg-org-iconbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--fgColor-muted, var(--color-fg-muted, #636c76));
+  font: inherit;
+  font-size: 12px;
+  line-height: 18px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+.ghtg-org-iconbtn:hover {
+  color: var(--fgColor-accent, var(--color-accent-fg, #0969da));
+}
+.ghtg-org-iconbtn--active {
+  color: var(--fgColor-accent, var(--color-accent-fg, #0969da));
+}
+/* 区切り「・」を使わない密度（Compact）では余白で間隔を取る */
+.ghtg-org-iconbtn--spaced {
+  margin-left: 8px;
+}
+.ghtg-org-iconbtn .ghtg-octicon {
+  vertical-align: middle;
+}
+.ghtg-org-iconbtn-count {
+  font-variant-numeric: tabular-nums;
+}
+
+/* 言語/統計行の「上」に置くグループチップ行（言語チップと同じ見た目: 10px ドット＋muted名） */
+.ghtg-org-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 0;
+  font-size: 12px;
+  line-height: 18px;
+}
+.ghtg-org-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--fgColor-muted, var(--color-fg-muted, #636c76));
+}
+.ghtg-org-chip-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+.ghtg-org-chip-label {
+  white-space: nowrap;
+}
+
+/* グループチップの独立行（言語/更新日のメタ行の上）。
+   見た目は GitHub の主要言語チップ（.repo-language-color ドット＋文字）に一致させる。 */
+.ghtg-chip-row {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--fgColor-muted, var(--color-fg-muted, #636c76));
+}
+
+/* 言語チップと同じ: ラッパーは右マージンのみ、余計な装飾なし */
+.ghtg-chip {
+  margin-right: 16px;
+  white-space: nowrap;
+}
+
+/* 言語ドット(.repo-language-color)と同寸: 12px 円・top 1px */
+.ghtg-chip-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  position: relative;
+  top: 1px;
+}
+
+/* ---- グループ一覧（カスタム描画） ---- */
+.ghtg-group-list {
+  color: var(--ghtg-fg);
+}
+
+/* 並べ替えコントロール（タブバー右寄せ） */
+.ghtg-sort {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ghtg-muted);
+}
+
+.ghtg-sort-select {
+  font: inherit;
+  font-size: 12px;
+  padding: 3px 6px;
+  border: 1px solid var(--ghtg-border);
+  border-radius: 6px;
+  background: var(--ghtg-canvas);
+  color: var(--ghtg-fg);
+  cursor: pointer;
+}
+
+.ghtg-glist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ghtg-glist-item {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--ghtg-border);
+}
+
+/* 見出しを廃止したので、先頭行の上余白を詰めてタブバーとの間隔を行間と揃える */
+.ghtg-glist .ghtg-glist-item:first-child {
+  padding-top: 0;
+}
+.ghtg-glist--compact .ghtg-glist-item:first-child {
+  padding-top: 0;
+}
+
+.ghtg-glist-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ghtg-glist-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ghtg-accent);
+  text-decoration: none;
+}
+
+.ghtg-glist-name:hover {
+  text-decoration: underline;
+}
+
+.ghtg-badge {
+  font-size: 11px;
+  line-height: 18px;
+  color: var(--ghtg-muted);
+  border: 1px solid var(--ghtg-border);
+  border-radius: 20px;
+  padding: 0 7px;
+}
+
+.ghtg-badge--archived {
+  color: var(--fgColor-attention, #9a6700);
+  border-color: var(--fgColor-attention, #9a6700);
+}
+
+/* 行の操作ボタン群（右寄せ） */
+.ghtg-glist-actions {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+
+.ghtg-glist-assign {
+  display: inline-flex;
+  align-items: center;
+  font: inherit;
+  color: var(--ghtg-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 2px 6px;
+  cursor: pointer;
+}
+.ghtg-glist-assign:hover {
+  color: var(--ghtg-accent);
+  border-color: var(--ghtg-border);
+}
+.ghtg-glist-assign .ghtg-octicon {
+  vertical-align: middle;
+}
+
+.ghtg-glist-remove {
+  display: inline-flex;
+  align-items: center;
+  font: inherit;
+  color: var(--ghtg-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 2px 6px;
+  cursor: pointer;
+}
+
+.ghtg-glist-remove:hover {
+  color: var(--fgColor-danger, var(--color-danger-fg, #cf222e));
+  border-color: var(--fgColor-danger, var(--color-danger-fg, #cf222e));
+}
+.ghtg-glist-remove .ghtg-octicon {
+  vertical-align: middle;
+}
+
+.ghtg-glist-desc {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: var(--ghtg-muted);
+}
+
+.ghtg-glist-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--ghtg-muted);
+}
+
+.ghtg-glist-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ghtg-lang-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+/* Org Compact 密度: グループ一覧も 1 行の凝縮表示にする */
+.ghtg-glist--compact .ghtg-glist-item {
+  padding: 8px 0;
+}
+.ghtg-glist--compact .ghtg-glist-row {
+  flex-wrap: nowrap;
+  gap: 8px;
+  overflow: hidden;
+}
+.ghtg-glist--compact .ghtg-glist-name {
+  font-size: 14px;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+.ghtg-glist--compact .ghtg-badge {
+  flex: 0 0 auto;
+}
+.ghtg-glist-desc-inline {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 14px;
+  color: var(--ghtg-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ghtg-glist--compact .ghtg-glist-lang {
+  flex: 0 0 auto;
+  font-size: 12px;
+  color: var(--ghtg-muted);
+}
+.ghtg-glist--compact .ghtg-glist-remove {
+  flex: 0 0 auto;
+}
+
+.ghtg-glist-empty {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--ghtg-muted);
+  background: var(--ghtg-subtle);
+  border: 1px dashed var(--ghtg-border);
+  border-radius: 10px;
+}
+
+.ghtg-glist-empty p {
+  margin: 0 0 6px;
+}
+
+.ghtg-glist-empty-sub {
+  font-size: 12px;
+}
+
+/* ---- メタ行のグループチップ（言語チップ風） ---- */
+.ghtg-meta-chip {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 12px;
+  white-space: nowrap;
+}
+
+.ghtg-meta-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 4px;
+  position: relative;
+  top: 1px;
+}
+
+/* ---- 割り当てメニュー（純正 Lists ダイアログ風 Overlay） ---- */
+.ghtg-overlay {
+  position: absolute !important;
+  z-index: 100000 !important;
+  width: 300px !important;
+  max-height: 80vh !important;
+  height: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden;
+  background: var(--overlay-bgColor, var(--bgColor-default, var(--color-canvas-overlay, #fff)));
+  border: 1px solid var(--borderColor-default, var(--color-border-default, #d1d9e0));
+  border-radius: 12px;
+  box-shadow: var(--shadow-floating-large, 0 8px 24px rgba(31, 35, 40, 0.2));
+  color: var(--fgColor-default, var(--color-fg-default, #1f2328));
+}
+
+.ghtg-overlay .Overlay-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.ghtg-overlay .ghtg-ol-desc {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--fgColor-muted, var(--color-fg-muted, #636c76));
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 230px;
+}
+
+.ghtg-overlay .ghtg-ol-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.ghtg-overlay .ghtg-ol-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ghtg-overlay .ghtg-ol-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.ghtg-overlay .ghtg-ol-content:hover {
+  background: var(--bgColor-muted, var(--color-canvas-subtle, #f6f8fa));
+}
+
+.ghtg-overlay .ghtg-ol-lead {
+  display: inline-flex;
+  align-items: center;
+}
+
+.ghtg-overlay .ghtg-ol-check {
+  margin: 0;
+}
+
+.ghtg-overlay .ghtg-ol-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.ghtg-overlay .ghtg-ol-label {
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ghtg-overlay .ghtg-ol-empty {
+  padding: 12px 8px;
+  font-size: 13px;
+  color: var(--fgColor-muted, var(--color-fg-muted, #636c76));
+}
+
+.ghtg-overlay .ghtg-ol-footer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.ghtg-overlay .ghtg-ol-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  font: inherit;
+  font-size: 13px;
+  padding: 5px 8px;
+  border: 1px solid var(--borderColor-default, var(--color-border-default, #d1d9e0));
+  border-radius: 6px;
+  background: var(--bgColor-default, var(--color-canvas-default, #fff));
+  color: inherit;
+}
+
+.ghtg-overlay .ghtg-ol-create {
+  flex: 0 0 auto;
+}
+
+/* タブバーの「管理」リンク（歯車アイコン＋ラベル） */
+.ghtg-tab-manage {
+  color: var(--ghtg-muted);
+}
+.ghtg-tab-manage .ghtg-octicon {
+  vertical-align: text-bottom;
+}
+.ghtg-tab-manage:hover {
+  color: var(--ghtg-fg);
+}
+
+/* ===== グループ管理モーダル ===== */
+.ghtg-overlay.ghtg-manage .ghtg-mg-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  /* 左右はヘッダー文字・フッター入力（16px）と揃える。上下は詰める */
+  padding: 8px 16px;
+}
+.ghtg-mg-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ghtg-mg-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+/* 色サンプルは円に統一（ドット表示と揃える）。input[type=color] の既定枠/余白を打ち消す */
+.ghtg-mg-color {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid var(--ghtg-border);
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  overflow: hidden;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.ghtg-mg-color::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+.ghtg-mg-color::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+}
+.ghtg-mg-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  box-sizing: border-box;
+  height: 28px;
+  font: inherit;
+  font-size: 13px;
+  padding: 4px 8px;
+  border: 1px solid var(--ghtg-border);
+  border-radius: 6px;
+  background: var(--bgColor-default, var(--color-canvas-default, #fff));
+  color: inherit;
+}
+.ghtg-mg-count {
+  flex: 0 0 auto;
+  font-size: 11px;
+  color: var(--ghtg-muted);
+  min-width: 20px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.ghtg-mg-actions {
+  flex: 0 0 auto;
+  display: inline-flex;
+  gap: 4px;
+}
+.ghtg-mg-move,
+.ghtg-mg-del {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  font: inherit;
+  line-height: 1;
+  border: 1px solid var(--ghtg-border);
+  border-radius: 6px;
+  background: var(--ghtg-subtle);
+  color: var(--ghtg-fg);
+  cursor: pointer;
+}
+.ghtg-mg-arrow {
+  font-size: 14px;
+  line-height: 1;
+}
+.ghtg-mg-move:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.ghtg-mg-move:hover:not(:disabled) {
+  border-color: var(--ghtg-accent);
+  color: var(--ghtg-accent);
+}
+.ghtg-mg-del:hover {
+  color: var(--fgColor-danger, var(--color-danger-fg, #cf222e));
+  border-color: var(--fgColor-danger, var(--color-danger-fg, #cf222e));
+}
+.ghtg-mg-del .ghtg-octicon {
+  vertical-align: middle;
+}
+.ghtg-mg-empty {
+  padding: 12px 8px;
+  font-size: 13px;
+  color: var(--ghtg-muted);
+}
