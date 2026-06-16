@@ -55,13 +55,29 @@ src/content.js         … GitHub ページへの UI 注入（プロフィール
 src/content.css        … 注入 UI のスタイル
 popup.html/js/css      … グループ管理ポップアップ
 icons/                 … アイコン（icon.svg がマスター、PNG は書き出し）
+scripts/package.ps1    … 配布用 zip 作成（Windows / PowerShell）
+scripts/package.sh     … 配布用 zip 作成（macOS / Linux）
 test/storage.test.cjs  … 保存層の単体テスト（dev）
 PRIVACY.md             … プライバシーポリシー（ストア提出用）
 STORE_LISTING.md       … ストア掲載文・提出メモ（dev）
 LICENSE                … MIT
 ```
 
-> 公開用パッケージ（zip）には拡張本体（`manifest.json` / `_locales/` / `icons/` / `popup.*` / `src/`）のみ含めれば十分です。`test/` `store-assets/` `README.md` `STORE_LISTING.md` は同梱不要（含めても害はありません）。
+> 公開用パッケージ（zip）には拡張本体（`manifest.json` / `_locales/` / `icons/`（PNG のみ）/ `popup.*` / `src/` / `LICENSE`）のみ含めれば十分です。`test/` `scripts/` `store-assets/` `icons/icon.svg` `README.md` `STORE_LISTING.md` は同梱不要。
+
+## 配布用パッケージの作成
+
+ストア提出用の zip（実行に必要なファイルのみ・`manifest.json` をルートに配置）を生成します。出力は `dist/`（git 管理外）。
+
+```sh
+# macOS / Linux
+./scripts/package.sh
+
+# Windows (PowerShell)
+pwsh ./scripts/package.ps1
+```
+
+`dist/tab-groups-for-github-<version>.zip` が作られます（`version` は `manifest.json` から取得）。アーカイブには `manifest.json`・`_locales/`・`src/`・`popup.*`・`icons/icon{16,32,48,128}.png`・`LICENSE` のみが、スラッシュ区切りのパスで含まれます（`icon.svg`・`test/`・`scripts/`・ドキュメントは除外）。
 
 ## データの保存と、改名・削除の扱い
 
