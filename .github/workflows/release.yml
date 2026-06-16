@@ -1,0 +1,42 @@
+name: Release
+
+# vX.Y.Z タグを push すると、テスト後に配布用 zip を作り、その zip を添付した
+# GitHub Release を作成する。Chrome Web Store への自動アップロードは行わない
+# （ストアへの提出・公開はダッシュボードで手動。理由は STORE_LISTING.md 参照）。
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write # GitHub Release を作成するため
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Tests and checks
+        run: |
+          node test/storage.test.cjs
+          node test/checks.cjs
+      - name: Verify tag matches manifest version
+        run: |
+          ver="$(node -p "require('./manifest.json').version")"
+          tag="${GITHUB_REF_NAME#v}"
+          echo "manifest=$ver tag=$tag"
+          if [ "$ver" != "$tag" ]; then
+            echo "::error::Tag '$GITHUB_REF_NAME' does not match manifest version '$ver'"
+            exit 1
+          fi
+      - name: Build distribution zip
+        run: bash scripts/package.sh
+      - name: Create GitHub Release with the zip
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" dist/tab-groups-for-github-*.zip \
+            --title "$GITHUB_REF_NAME" --generate-notes

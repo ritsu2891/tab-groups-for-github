@@ -1,0 +1,32 @@
+name: CI
+
+# develop / release への push・PR で、保存層テストと静的チェック（manifest / locale /
+# i18n 整合・JS 構文）を実行する。GitHub への送信や公開は行わない。
+
+on:
+  push:
+    branches: [develop, release]
+  pull_request:
+    branches: [develop, release]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Storage unit tests
+        run: node test/storage.test.cjs
+      - name: Static checks (manifest / locales / i18n)
+        run: node test/checks.cjs
+      - name: JS syntax check
+        run: |
+          for f in src/i18n.js src/storage.js src/content.js popup.js; do
+            echo "checking $f"
+            node --check "$f"
+          done
