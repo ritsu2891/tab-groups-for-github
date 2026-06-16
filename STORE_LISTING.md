@@ -111,7 +111,7 @@ It does not transmit page contents anywhere.
 ### Privacy policy URL
 `PRIVACY.md` をリポジトリに置き、その URL を貼る（公開済み。`HEAD` は既定ブランチに追従するのでブランチ改名に強い）:
 ```
-https://github.com/ritsu2891/tab-groups-for-github/blob/HEAD/PRIVACY.md
+https://github.com/ritsu2891/tab-groups-for-github/blob/release/PRIVACY.md
 ```
 
 ---
