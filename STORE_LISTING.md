@@ -109,9 +109,9 @@ It does not transmit page contents anywhere.
   - I do not use or transfer user data to determine creditworthiness or for lending purposes.
 
 ### Privacy policy URL
-`PRIVACY.md` をリポジトリに置き、その URL を貼る（公開済み）:
+`PRIVACY.md` をリポジトリに置き、その URL を貼る（公開済み。`HEAD` は既定ブランチに追従するのでブランチ改名に強い）:
 ```
-https://github.com/ritsu2891/tab-groups-for-github/blob/main/PRIVACY.md
+https://github.com/ritsu2891/tab-groups-for-github/blob/HEAD/PRIVACY.md
 ```
 
 ---
