@@ -1,13 +1,13 @@
 name: CI
 
-# develop / release への push・PR で、保存層テストと静的チェック（manifest / locale /
+# release ブランチへの push・PR で、保存層テストと静的チェック（manifest / locale /
 # i18n 整合・JS 構文）を実行する。GitHub への送信や公開は行わない。
 
 on:
   push:
-    branches: [develop, release]
+    branches: [release]
   pull_request:
-    branches: [develop, release]
+    branches: [release]
 
 permissions:
   contents: read
