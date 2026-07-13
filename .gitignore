@@ -1,14 +1,43 @@
-# OS
+# common — 全リポジトリ共通（OS / エディタ / ツールのノイズ）
+
+# --- macOS ---
+# 注: macOS の "Icon\r"（カスタムフォルダアイコン）用パターン `Icon?` は、`icons/` など
+#     「Icon＋1文字」のディレクトリまで巻き込む（mac は大小無視）ため、あえて入れない。
 .DS_Store
+.AppleDouble
+.LSOverride
+
+# --- Windows ---
 Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
 
-# Editors
-.vscode/
+# --- エディタ / IDE ---
 .idea/
+# VSCode: チーム共有設定は追跡し、それ以外（個人設定）は除外する。
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/*.code-snippets
+*.swp
+*.swo
+*~
 
-# Build / distribution artifacts
-*.zip
-dist/
+# --- Claude Code（ローカル個人設定のみ。共有するコマンド/エージェントは追跡） ---
+.claude/settings.local.json
+tmpclaude-*
 
-# Node (only if you ever add tooling deps)
+# --- Windows 用 dev スクリプトの `>nul` が Unix 上で生成するゴミ ---
+nul
+
+# chrome-ext — Chrome 拡張（JavaScript）
+
+# --- 依存（ツール導入時） ---
 node_modules/
+
+# --- ビルド / 配布物 ---
+dist/
+*.zip
