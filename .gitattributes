@@ -1,0 +1,29 @@
+# === common — 全リポジトリ共通 ===
+
+# テキストは取り出しもコミットも LF にする。Mac と Windows の両方で作業するため、
+# Windows の Git 既定（core.autocrlf=true）の CRLF で取り出すと、ツールが LF で保存し直した
+# だけで中身が同じまま変更扱いになる。
+* text=auto eol=lf
+
+# Windows のバッチは CRLF でないとラベルへのジャンプなどが誤動作する。
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# バイナリは改行変換しない
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+*.mp3 binary
+*.wav binary
+*.ogg binary
+*.mp4 binary
+*.mov binary
